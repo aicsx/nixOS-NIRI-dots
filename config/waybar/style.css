@@ -1,0 +1,136 @@
+@import url("./mocha.css");
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    color: @text;
+    background-color: rgba(54, 58, 79, 0.7); 
+}
+
+/* ========================================================================== */
+/* SEZIONE WORKSPACE (TOKYONIGHT + PACMAN COERENTE)                          */
+/* ========================================================================== */
+
+#workspaces {
+    background-color: transparent; 
+    border: none;                  
+    margin: 0;
+    padding: 0 4px;
+}
+
+#workspaces button {
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #565f89;        /* Grigio-azzurro TokyoNight per i moduli inattivi */
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0 4px;        
+    margin: 0;
+    background: transparent;
+    transition: color 0.2s ease;
+}
+
+/* Gestione stati Niri: vuoti ed elementi con finestre in background */
+#workspaces button.empty {
+    color: #565f89;        /* Vuoto e spento */
+}
+
+#workspaces button.default {
+    color: #a9b1d6;        /* Fantasmini con app aperte assumono un grigio chiaro */
+}
+
+/* Stato Attivo (Mouse hover o Desktop Corrente) assegnato ad Azzurro TokyoNight */
+#workspaces button:hover,
+#workspaces button.active,
+#workspaces button.focused {
+    color: #7aa2f7;        /* Azzurro/Blu TokyoNight fisso e coerente */
+    background: transparent;
+    font-size: 12px;       
+}
+
+#workspaces button.urgent {
+    color: #f7768e;        /* Rosso TokyoNight */
+}
+
+/* ========================================================================== */
+/* ALTRI MODULI DELLA BARRA                                                   */
+/* ========================================================================== */
+
+#cpu,
+#memory,
+#disk,
+#temperature,
+#clock,
+#pulseaudio,
+#backlight,
+#network,
+#bluetooth,
+#battery,
+#language,
+#idle_inhibitor,
+#tray,
+#custom-lock,
+#custom-power,
+#custom_lock,
+#custom_power {
+    padding: 0 6px;
+    margin: 0;
+}
+
+#window {
+    color: @blue;
+    margin-left: 5px;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+#clock {
+    color: @text;
+}
+
+#battery,
+#battery.charging {
+    color: @green;
+}
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+   color: @red;
+}
+
+#cpu, #memory, #disk {
+    color: @text;
+} 
+
+#pulseaudio {
+    color: @mauve;
+}
+
+#backlight {
+    color: @yellow;
+}
+
+#network, #bluetooth {
+   color: @sky;
+}
+
+#custom_lock {
+    color: @text;
+}
+
+#custom_power {
+    color: @red;
+}

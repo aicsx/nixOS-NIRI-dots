@@ -1,0 +1,176 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 22, 
+  "width": 1366, 
+  "spacing": 5, 
+  "modules-left": [
+    "niri/workspaces",
+    "niri/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "disk",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    "backlight",
+    "network",
+    "bluetooth",
+    "battery",
+    "idle_inhibitor",
+    "tray",
+    "custom/lock",
+    "custom/power"
+  ],
+  "niri/workspaces": {
+    "format": "{icon}{name}",
+    "on-click": "activate",
+    "format-icons": {
+      "empty": "•",             
+      "default": "ᗣ",           
+      "active": "ᗧ",            
+      "focused": "ᗧ"
+    },
+    "name-rewrite": {
+      "1": "¹",
+      "2": "²",
+      "3": "³",
+      "4": "⁴",
+      "5": "⁵"
+    }
+  },
+  "clock": {
+    "timezone": "Europe/Rome",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format-alt": " {:%d.%m.%Y}",
+    "format": " {:%H:%M}",
+    "on-click-right": "gnome-calendar",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 0,
+      "format": {
+        "months": "<span color='#89b4fa'><b>{}</b></span>",
+        "days": "<span color='#cdd6f4'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 1,
+    "on-click-right": "ghostty -e btop"
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%",
+    "path": "/",
+    "tooltip": true,
+    "tooltip-format": "{used} usati su {total} ({percentage_used}%)"
+  },
+  "memory": {
+    "format": " {}%"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": " {icon} {volume}%",
+    "format-muted": " mute",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+      "ignored-sinks": ["Easy Effects Sink"]
+    },
+    "scroll-step": 5.0,
+    "on-click": "~/.config/waybar/scripts/volume.sh --toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "~/.config/waybar/scripts/volume.sh --inc",
+    "on-scroll-down": "~/.config/waybar/scripts/volume.sh --dec",
+    "smooth-scrolling-threshold": 1
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "on-click": "~/.config/waybar/scripts/volume.sh --toggle-mic",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "~/.config/waybar/scripts/volume.sh --mic-inc",
+    "on-scroll-down": "~/.config/waybar/scripts/volume.sh --mic-dec",
+    "scroll-step": 5
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "on-scroll-up": "brightnessctl s '+10%'",
+    "on-scroll-down": "brightnessctl s '10%-'",
+    "on-click": "((( $(brightnessctl g) == 100 )) && brightnessctl s '0') || (brightnessctl s '+10%')",
+    "on-click-right": "((( $(brightnessctl g) == 100 )) && brightnessctl s '0') || (brightnessctl s '10%-')",
+    "format-icons": ["", "", "", "", "", "", "", "", ""]
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{ipaddr}",
+    "format-ethernet": "{ipaddr}",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": " ",
+    "on-click-right": "ghostty -e nmtui"
+  },
+  "bluetooth": {
+    "format": "",
+    "format-on": "",
+    "format-connected": " {num_connections}",
+    "tooltip-format": " disable",
+    "tooltip-format-on": " enable",
+    "tooltip-format-off": " disable",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": " {device_alias}",
+    "on-click-right": "blueman-manager"
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-alt": "{icon}",
+    "format-charging": "{icon} {capacity}% ",
+    "format-plugged": "{icon} {capacity}% ",
+    "format-full": "{icon} {capacity}% ",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "  ",
+      "deactivated": "  "
+    }
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 4
+  },
+  "custom/lock": {
+    "tooltip": false,
+    "on-click": "hyprlock &",
+    "format": ""
+  },
+  "custom/power": {
+    "tooltip": false,
+    "on-click": "wlogout &",
+    "format": "⏻"
+  }
+}
+
